@@ -16,16 +16,18 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-
 from mediqueue import settings
+from mq import views
 from mq.views import *
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mediqueue/', include('mq.urls')),
+    path('', index),
+    path('register/', views.register_view, name='register'),
+    path('account/', account, name = 'account'), #личный кабинет
 ]
 
 if settings.DEBUG:
